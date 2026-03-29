@@ -1,0 +1,317 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =================================================================
+   부모혜택 — 글로벌 디자인 시스템
+   시니어 친화 기준: 18px 이상, 줄간격 1.85, 44px 터치 영역, WCAG AA
+   ================================================================= */
+
+/* ─── 1. BASE: HTML·BODY·타이포그래피 ─────────────────────────── */
+@layer base {
+
+  /* html: 18px 기준점 설정
+     112.5% = 브라우저 기본(16px) × 1.125 = 18px
+     사용자가 브라우저 기본 폰트를 크게 설정했다면 그 비율 그대로 확대됨 (접근성 유지)
+  */
+  html {
+    font-size: 112.5%;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+    font-size: 1rem;       /* html 기준 18px */
+    line-height: 1.85;     /* 시니어 권장 줄간격 */
+    word-break: keep-all;  /* 한국어: 어절 단위로 줄바꿈 */
+    overflow-wrap: break-word;
+  }
+
+  /* ─── 제목 계층 ─────────────────────────────────────────────── */
+  /* leading-tight는 적용하지 않음 — 제목도 충분한 줄간격 유지 */
+
+  h1 {
+    @apply text-3xl font-bold text-gray-900;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    @apply text-2xl font-bold text-gray-900;
+    line-height: 1.35;
+    margin-top: 2.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  h3 {
+    @apply text-xl font-semibold text-gray-900;
+    line-height: 1.4;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h4 {
+    @apply text-lg font-semibold text-gray-800;
+    line-height: 1.45;
+    margin-top: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ─── 단락·리스트 ────────────────────────────────────────────── */
+
+  p {
+    margin-bottom: 1.25rem;
+  }
+
+  ul,
+  ol {
+    @apply pl-6;
+    margin-bottom: 1.25rem;
+  }
+
+  ul { list-style-type: disc; }
+  ol { list-style-type: decimal; }
+
+  li {
+    margin-bottom: 0.45rem;
+    /* body line-height 상속 — 별도 지정 불필요 */
+  }
+
+  /* 중첩 리스트 */
+  li > ul,
+  li > ol {
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+  }
+
+  strong,
+  b {
+    @apply font-semibold text-gray-900;
+  }
+
+  /* ─── 링크 ──────────────────────────────────────────────────── */
+  /* blue-700 (#1D4ED8): 흰 배경 대비 5.74:1 → WCAG AA 안전 통과 */
+
+  a {
+    @apply text-blue-700 underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    @apply text-blue-900;
+    text-decoration-thickness: 2px;
+  }
+
+  /* ─── 기타 시맨틱 요소 ──────────────────────────────────────── */
+
+  /* 인라인 코드 (정책 조항 번호 등에서 사용될 수 있음) */
+  code {
+    @apply rounded bg-gray-100 px-1.5 py-0.5 text-sm font-mono text-gray-800;
+  }
+
+  /* 인용문 */
+  blockquote {
+    @apply border-l-4 border-gray-300 pl-4 text-gray-600 italic;
+    margin: 1.5rem 0;
+  }
+
+  /* 수평선 */
+  hr {
+    @apply border-0 border-t border-gray-200;
+    margin: 2rem 0;
+  }
+
+  /* 테이블: 정책 비교, 지원금 기준표 등 */
+  table {
+    @apply w-full border-collapse text-sm;
+    margin-bottom: 1.5rem;
+  }
+
+  th {
+    @apply border border-gray-200 bg-gray-100 px-4 py-2.5
+           text-left font-semibold text-gray-800;
+  }
+
+  td {
+    @apply border border-gray-200 px-4 py-2.5 align-top text-gray-800;
+  }
+
+  tr:nth-child(even) td {
+    @apply bg-gray-50;
+  }
+
+  /* ─── 포커스 접근성 ─────────────────────────────────────────── */
+  /* 마우스 클릭 시에는 outline 숨김, 키보드 탐색 시에만 노출 */
+  :focus-visible {
+    @apply rounded outline-none ring-2 ring-blue-700 ring-offset-2;
+  }
+}
+
+
+/* ─── 2. COMPONENTS: 재사용 가능한 공통 클래스 ─────────────────── */
+@layer components {
+
+  /* ── 컨테이너 ──────────────────────────────────────────────── */
+
+  /* 상세 글, 단일 컬럼 레이아웃 */
+  .container-content {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6;
+  }
+
+  /* 목록·카드, 양 컬럼 레이아웃 */
+  .container-wide {
+    @apply mx-auto w-full max-w-wide px-4 sm:px-6;
+  }
+
+  /* 헤더·푸터 등 전체 너비 컨테이너 */
+  .container-site {
+    @apply mx-auto w-full max-w-site px-4 sm:px-6;
+  }
+
+
+  /* ── 버튼: 최소 44px 터치 영역 ─────────────────────────────── */
+  /* 기본 버튼 공통 속성 */
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2
+           rounded-lg font-semibold
+           min-h-[44px] min-w-[44px] px-5 py-2.5
+           transition-colors duration-150
+           focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-offset-2 focus-visible:ring-blue-700
+           disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* 주요 행동 버튼 */
+  .btn-primary {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2
+           rounded-lg font-semibold min-h-[44px] min-w-[44px] px-5 py-2.5
+           transition-colors duration-150
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-700
+           disabled:pointer-events-none disabled:opacity-50
+           bg-blue-700 text-white hover:bg-blue-900;
+  }
+
+  /* 보조 버튼 */
+  .btn-outline {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2
+           rounded-lg font-semibold min-h-[44px] min-w-[44px] px-5 py-2.5
+           transition-colors duration-150
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-700
+           disabled:pointer-events-none disabled:opacity-50
+           border-2 border-blue-700 text-blue-700 bg-white hover:bg-blue-50;
+  }
+
+  /* 텍스트형 버튼 */
+  .btn-ghost {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2
+           rounded-lg font-semibold min-h-[44px] min-w-[44px] px-5 py-2.5
+           transition-colors duration-150
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-700
+           disabled:pointer-events-none disabled:opacity-50
+           text-gray-700 hover:bg-gray-100;
+  }
+
+  /* 작은 버튼 (최소 터치 영역은 유지) */
+  .btn-sm {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2
+           rounded-lg font-semibold min-h-[44px] min-w-[44px] px-4 py-2 text-sm
+           transition-colors duration-150
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-700
+           disabled:pointer-events-none disabled:opacity-50;
+  }
+
+
+  /* ── 정보 박스 ──────────────────────────────────────────────── */
+  /*
+   * 사용법:
+   *   <div class="box-info">
+   *     <p class="box-title">알아두세요</p>
+   *     <p>내용</p>
+   *   </div>
+   *
+   * 종류:
+   *   box-info    — 일반 안내 (파란색)
+   *   box-tip     — 실천 팁 / 활용 방법 (초록색)
+   *   box-warning — 주의·유의 사항 (노란색)
+   *   box-summary — 핵심 요약 / 한눈에 보기 (회색)
+   */
+
+  /* 일반 안내 */
+  .box-info {
+    @apply rounded-lg border-l-4 border-blue-600 bg-blue-50 px-5 py-4 text-blue-900;
+    margin: 1.5rem 0;
+  }
+
+  /* 실천 팁·방법 */
+  .box-tip {
+    @apply rounded-lg border-l-4 border-green-600 bg-green-50 px-5 py-4 text-green-900;
+    margin: 1.5rem 0;
+  }
+
+  /* 주의·유의 사항 */
+  .box-warning {
+    @apply rounded-lg border-l-4 border-amber-500 bg-amber-50 px-5 py-4 text-amber-900;
+    margin: 1.5rem 0;
+  }
+
+  /* 핵심 요약 */
+  .box-summary {
+    @apply rounded-lg border border-gray-200 bg-gray-50 px-5 py-4 text-gray-800;
+    margin: 1.5rem 0;
+  }
+
+  /* 박스 내부 제목 */
+  .box-title {
+    @apply mb-1.5 font-semibold;
+    /* 크기는 상속 — 박스 외부 폰트 크기를 따름 */
+  }
+
+
+  /* ── 배지·태그 ──────────────────────────────────────────────── */
+  /* 카테고리 표시, 태그 목록 등에 사용 */
+  /* 단독으로 쓸 때: <span class="badge-blue"> */
+  .badge-blue  { @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-blue-100 text-blue-800; }
+  .badge-green { @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-green-100 text-green-800; }
+  .badge-amber { @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-amber-100 text-amber-800; }
+  .badge-gray  { @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium bg-gray-100 text-gray-700; }
+
+
+  /* ── 카드 ────────────────────────────────────────────────────── */
+  /* 글 목록 카드, 허브 카드 등에 사용 */
+  .card {
+    @apply rounded-xl border border-gray-200 bg-white p-5;
+  }
+
+  /* 클릭 가능한 카드 */
+  .card-link {
+    @apply rounded-xl border border-gray-200 bg-white p-5
+           transition-shadow duration-150
+           hover:border-blue-300 hover:shadow-sm;
+  }
+
+
+  /* ── 시각적 구분선 ──────────────────────────────────────────── */
+  /* <section> 사이 등에 사용 */
+  .divider {
+    @apply my-8 border-0 border-t border-gray-200;
+  }
+
+
+  /* ── 보조 텍스트 ────────────────────────────────────────────── */
+  /*
+   * 회색 글씨 남용 금지 원칙:
+   *   - 날짜, 출처 등 보조 정보에만 사용
+   *   - text-gray-500 이상(더 진한 쪽)만 사용 (흰 배경 대비 7.5:1+ 필요 시 text-gray-700 사용)
+   *   - 회색 배경 위에서는 text-gray-700 이상 사용
+   */
+  .text-meta {
+    @apply text-sm text-gray-500;
+  }
+
+  /* 접근성: 스크린 리더용 숨김 텍스트 */
+  .sr-only-custom {
+    @apply sr-only;
+  }
+}

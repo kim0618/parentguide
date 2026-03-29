@@ -53,7 +53,6 @@ export default function ArticleCard({ item, showBadge = true, sourceHub }: Props
       <Link
         href={`/guide/${item.slug}/`}
         className="block p-5 no-underline text-inherit"
-        aria-label={`${item.title} 자세히 보기`}
         onClick={handleClick}
       >
         {/* 배지 영역 */}
@@ -94,11 +93,18 @@ export default function ArticleCard({ item, showBadge = true, sourceHub }: Props
           </ul>
         )}
 
-        {/* 더보기 링크 */}
-        <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-blue-700 group-hover:underline">
-          자세히 보기
-          <span aria-hidden="true">→</span>
-        </span>
+        {/* 하단: 업데이트 날짜 + 더보기 */}
+        <div className="mt-3 flex items-center justify-between">
+          {item.updatedAt && (
+            <span className="text-xs text-gray-500">
+              {item.updatedAt.slice(0, 7).replace('-', '.')} 검토
+            </span>
+          )}
+          <span className="inline-flex items-center gap-1 text-sm font-medium text-blue-700 group-hover:underline">
+            자세히 보기
+            <span aria-hidden="true">→</span>
+          </span>
+        </div>
       </Link>
     </article>
   );

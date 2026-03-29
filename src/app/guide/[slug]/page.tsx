@@ -4,7 +4,6 @@ import {
   getAllSlugs,
   getContentBySlug,
   getRelatedContent,
-  getSiblingContent,
 } from '@/lib/content';
 import { GuideTemplate } from '@/components/guide';
 import JsonLd from '@/components/seo/JsonLd';
@@ -40,10 +39,7 @@ export default async function GuidePage({ params }: Props) {
   const item = getContentBySlug(slug);
   if (!item) notFound();
 
-  // relatedSlugs 우선, 없거나 비어 있으면 같은 카테고리 형제 글 최대 2개
-  const relatedFromSlugs = getRelatedContent(slug);
-  const relatedArticles =
-    relatedFromSlugs.length > 0 ? relatedFromSlugs : getSiblingContent(slug, 2);
+  const relatedArticles = getRelatedContent(slug, 4);
 
   const relatedDownloads = getDownloadsByGuide(slug);
 

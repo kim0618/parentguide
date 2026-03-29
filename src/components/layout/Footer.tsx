@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { siteConfig } from '@/config/siteConfig';
 import { categories } from '@/data/categories';
+import Logo from './Logo';
 
 /** 푸터 안내 링크 */
 const INFO_LINKS = [
@@ -24,9 +25,7 @@ export default function Footer() {
 
           {/* 브랜드 설명 */}
           <div>
-            <strong className="text-base font-bold text-gray-900">
-              {siteConfig.siteName}
-            </strong>
+            <Logo />
             <p className="mt-2 text-sm leading-relaxed text-gray-600">
               {siteConfig.siteSubDescription}
             </p>

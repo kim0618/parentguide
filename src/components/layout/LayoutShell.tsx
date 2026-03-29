@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Header, Footer } from '@/components/layout';
+import { ScrollToTop } from '@/components/ui';
 
 export default function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -18,6 +19,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
         {children}
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

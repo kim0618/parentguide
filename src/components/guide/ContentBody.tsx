@@ -7,6 +7,22 @@ interface Props {
 }
 
 /**
+ * body 텍스트 중 내부 링크([[slug|텍스트]] 형식)를 <a> 태그로 변환.
+ * 예: [[basic-pension-application|기초연금 신청 방법]]
+ *   → <a href="/guide/basic-pension-application/">기초연금 신청 방법</a>
+ */
+function BodyText({ text, className }: { text: string; className?: string }) {
+  const hasLink = /\[\[[a-z0-9-]+\|[^\]]+\]\]/.test(text);
+  if (!hasLink) return <p className={className}>{text}</p>;
+
+  const html = text.replace(
+    /\[\[([a-z0-9-]+)\|([^\]]+)\]\]/g,
+    '<a href="/guide/$1/">$2</a>',
+  );
+  return <p className={className} dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
+/**
  * 글 본문 섹션 배열을 타입별로 렌더링.
  *
  * - text          → 제목 + 단락
@@ -21,28 +37,31 @@ export default function ContentBody({ sections, template }: Props) {
   return (
     <div>
       {sections.map((section, i) => (
-        <SectionBlock key={i} section={section} template={template} />
+        <SectionBlock key={i} index={i} section={section} template={template} />
       ))}
     </div>
   );
 }
 
 function SectionBlock({
+  index,
   section,
   template,
 }: {
+  index: number;
   section: ContentSection;
   template?: ContentTemplate;
 }) {
   const { type, heading, body, items } = section;
   const isChecklist = template === 'checklist';
+  const headingId = heading ? `section-${index}` : undefined;
 
   /* ── text ───────────────────────────────────────────────────── */
   if (type === 'text') {
     return (
       <div>
-        {heading && <h2 className="mt-8 mb-3">{heading}</h2>}
-        {body && <p>{body}</p>}
+        {heading && <h2 id={headingId} className="mt-8 mb-3 scroll-mt-20">{heading}</h2>}
+        {body && <BodyText text={body} />}
       </div>
     );
   }
@@ -51,7 +70,7 @@ function SectionBlock({
   if (type === 'list') {
     return (
       <div>
-        {heading && <h2 className="mt-8 mb-3">{heading}</h2>}
+        {heading && <h2 id={headingId} className="mt-8 mb-3 scroll-mt-20">{heading}</h2>}
         {items && (
           <ul className="list-none pl-0 space-y-2 mb-5">
             {items.map((item, j) => (
@@ -73,7 +92,7 @@ function SectionBlock({
   if (type === 'numbered-list') {
     return (
       <div>
-        {heading && <h2 className="mt-8 mb-3">{heading}</h2>}
+        {heading && <h2 id={headingId} className="mt-8 mb-3 scroll-mt-20">{heading}</h2>}
         {items && (
           <ol className={`list-none pl-0 mb-5 ${isChecklist ? 'space-y-4' : 'space-y-3'}`}>
             {items.map((item, j) => (
@@ -103,8 +122,8 @@ function SectionBlock({
   if (type === 'info') {
     return (
       <div className="box-info">
-        {heading && <p className="box-title">{heading}</p>}
-        {body && <p className={heading ? 'mt-1 mb-0' : 'mb-0'}>{body}</p>}
+        {heading && <p id={headingId} className="box-title scroll-mt-20">{heading}</p>}
+        {body && <BodyText text={body} className={heading ? 'mt-1 mb-0' : 'mb-0'} />}
         {items && (
           <ul className="list-none pl-0 mt-2 mb-0 space-y-1">
             {items.map((item, j) => (
@@ -123,8 +142,8 @@ function SectionBlock({
   if (type === 'tip') {
     return (
       <div className="box-tip">
-        {heading && <p className="box-title">{heading}</p>}
-        {body && <p className={heading ? 'mt-1 mb-0' : 'mb-0'}>{body}</p>}
+        {heading && <p id={headingId} className="box-title scroll-mt-20">{heading}</p>}
+        {body && <BodyText text={body} className={heading ? 'mt-1 mb-0' : 'mb-0'} />}
         {items && (
           <ul className="list-none pl-0 mt-2 mb-0 space-y-1">
             {items.map((item, j) => (
@@ -143,8 +162,8 @@ function SectionBlock({
   if (type === 'warning') {
     return (
       <div className="box-warning">
-        {heading && <p className="box-title">{heading}</p>}
-        {body && <p className={heading ? 'mt-1 mb-0' : 'mb-0'}>{body}</p>}
+        {heading && <p id={headingId} className="box-title scroll-mt-20">{heading}</p>}
+        {body && <BodyText text={body} className={heading ? 'mt-1 mb-0' : 'mb-0'} />}
         {items && (
           <ul className="list-none pl-0 mt-2 mb-0 space-y-1">
             {items.map((item, j) => (
@@ -163,8 +182,8 @@ function SectionBlock({
   if (type === 'summary') {
     return (
       <div className="box-summary">
-        {heading && <p className="box-title">{heading}</p>}
-        {body && <p className={heading ? 'mt-1 mb-0' : 'mb-0'}>{body}</p>}
+        {heading && <p id={headingId} className="box-title scroll-mt-20">{heading}</p>}
+        {body && <BodyText text={body} className={heading ? 'mt-1 mb-0' : 'mb-0'} />}
         {items && (
           <ul className="list-none pl-0 mt-3 mb-0 space-y-2">
             {items.map((item, j) => (

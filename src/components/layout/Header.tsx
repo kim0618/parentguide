@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { siteConfig } from '@/config/siteConfig';
 import { categories } from '@/data/categories';
+import Logo from './Logo';
 import { hubs } from '@/data/hubs';
+import FontSizeControl from '@/components/ui/FontSizeControl';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,9 +18,9 @@ export default function Header() {
           {/* ── 브랜드 ──────────────────────────────────── */}
           <Link
             href="/"
-            className="text-xl font-bold text-gray-900 no-underline hover:text-blue-700"
+            className="no-underline hover:opacity-80"
           >
-            {siteConfig.siteName}
+            <Logo />
           </Link>
 
           {/* ── 데스크탑 내비 ────────────────────────────── */}
@@ -49,6 +50,14 @@ export default function Header() {
             >
               상황별 가이드
             </Link>
+
+            {/* 구분선 */}
+            <span
+              className="mx-2 inline-block h-4 w-px bg-gray-300"
+              aria-hidden="true"
+            />
+
+            <FontSizeControl />
           </nav>
 
           {/* ── 모바일 햄버거 버튼 ───────────────────────── */}
@@ -107,7 +116,7 @@ export default function Header() {
 
             {/* 카테고리 */}
             <section>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
                 카테고리
               </p>
               <ul className="space-y-0.5">
@@ -127,7 +136,7 @@ export default function Header() {
 
             {/* 상황별 가이드 */}
             <section>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
                 상황별 가이드
               </p>
               <ul className="space-y-0.5">
@@ -143,6 +152,14 @@ export default function Header() {
                   </li>
                 ))}
               </ul>
+            </section>
+
+            {/* 글자 크기 조절 */}
+            <section className="border-t border-gray-100 pt-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                글자 크기
+              </p>
+              <FontSizeControl />
             </section>
 
             {/* 사이트 안내 */}

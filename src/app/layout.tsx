@@ -29,11 +29,20 @@ export const metadata: Metadata = {
     title:       siteConfig.defaultOgTitle,
     description: siteConfig.defaultOgDescription,
     locale:      'ko_KR',
+    images: [
+      {
+        url: '/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: '부모혜택 - 부모님 복지·건강·은퇴 정보를 한곳에',
+      },
+    ],
   },
   twitter: {
-    card:        'summary',
+    card:        'summary_large_image',
     title:       siteConfig.defaultOgTitle,
     description: siteConfig.defaultOgDescription,
+    images: ['/og-default.png'],
   },
   robots: {
     index:  process.env.NODE_ENV === 'production',
@@ -49,6 +58,19 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        {/* Pretendard 웹폰트 - preload로 우선 로딩 + 비동기 적용 */}
+        <link
+          rel="preload"
+          as="style"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+        <link rel="alternate" type="application/rss+xml" title="부모혜택 RSS" href="/feed.xml" />
+        <meta name="theme-color" content="#1D4ED8" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
         <JsonLd schemas={[buildOrganizationJsonLd(), buildWebSiteJsonLd()]} />
       </head>
       <body className="flex min-h-screen flex-col">

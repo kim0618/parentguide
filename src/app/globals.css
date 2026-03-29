@@ -1,3 +1,5 @@
+/* Pretendard 폰트는 layout.tsx에서 <link rel="preload">로 비동기 로딩 */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -172,8 +174,12 @@
 
 
   /* ── 버튼: 최소 44px 터치 영역 ─────────────────────────────── */
-  /* 기본 버튼 공통 속성 */
-  .btn {
+  /* 기본 버튼 공통 속성 - 모든 btn-* 변형이 상속 */
+  .btn,
+  .btn-primary,
+  .btn-outline,
+  .btn-ghost,
+  .btn-sm {
     @apply inline-flex cursor-pointer items-center justify-center gap-2
            rounded-lg font-semibold
            min-h-[44px] min-w-[44px] px-5 py-2.5
@@ -185,41 +191,22 @@
 
   /* 주요 행동 버튼 */
   .btn-primary {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2
-           rounded-lg font-semibold min-h-[44px] min-w-[44px] px-5 py-2.5
-           transition-colors duration-150
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-700
-           disabled:pointer-events-none disabled:opacity-50
-           bg-blue-700 text-white hover:bg-blue-900;
+    @apply bg-blue-700 text-white hover:bg-blue-900;
   }
 
   /* 보조 버튼 */
   .btn-outline {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2
-           rounded-lg font-semibold min-h-[44px] min-w-[44px] px-5 py-2.5
-           transition-colors duration-150
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-700
-           disabled:pointer-events-none disabled:opacity-50
-           border-2 border-blue-700 text-blue-700 bg-white hover:bg-blue-50;
+    @apply border-2 border-blue-700 text-blue-700 bg-white hover:bg-blue-50;
   }
 
   /* 텍스트형 버튼 */
   .btn-ghost {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2
-           rounded-lg font-semibold min-h-[44px] min-w-[44px] px-5 py-2.5
-           transition-colors duration-150
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-700
-           disabled:pointer-events-none disabled:opacity-50
-           text-gray-700 hover:bg-gray-100;
+    @apply text-gray-700 hover:bg-gray-100;
   }
 
   /* 작은 버튼 (최소 터치 영역은 유지) */
   .btn-sm {
-    @apply inline-flex cursor-pointer items-center justify-center gap-2
-           rounded-lg font-semibold min-h-[44px] min-w-[44px] px-4 py-2 text-sm
-           transition-colors duration-150
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-700
-           disabled:pointer-events-none disabled:opacity-50;
+    @apply px-4 py-2 text-sm;
   }
 
 
@@ -310,8 +297,55 @@
     @apply text-sm text-gray-500;
   }
 
-  /* 접근성: 스크린 리더용 숨김 텍스트 */
-  .sr-only-custom {
-    @apply sr-only;
+}
+
+
+/* ─── 3. PRINT: 브라우저 인쇄 시 스타일 ──────────────────────────── */
+@media print {
+  /* 인쇄 불필요 요소 숨김 */
+  header,
+  footer,
+  nav,
+  [data-ad-slot],
+  .ad-placeholder {
+    display: none !important;
+  }
+
+  /* 본문 최대 너비 해제 */
+  .container-content,
+  .container-wide,
+  .container-site {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #000;
+  }
+
+  /* 외부 링크 URL 표시 */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+    word-break: break-all;
+  }
+
+  /* 내부 링크는 URL 미표시 */
+  a[href^="/"]::after,
+  a[href^="#"]::after {
+    content: none;
+  }
+
+  /* 페이지 나눔 제어 */
+  h1, h2, h3 {
+    break-after: avoid;
+  }
+
+  .box-info, .box-tip, .box-warning, .box-summary,
+  table, figure, img {
+    break-inside: avoid;
   }
 }

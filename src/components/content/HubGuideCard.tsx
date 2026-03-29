@@ -34,7 +34,6 @@ export default function HubGuideCard({ hub, sourcePage = 'unknown' }: Props) {
     <Link
       href={hub.href}
       className="card-link block no-underline"
-      aria-label={`${hub.title} 가이드 보기`}
       onClick={handleClick}
     >
       {/* 색상 포인트 바 */}

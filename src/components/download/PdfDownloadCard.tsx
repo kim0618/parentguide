@@ -77,7 +77,7 @@ export default function PdfDownloadCard({ item, variant = 'card' }: Props) {
             <Link
               href={item.printUrl}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               className="text-xs text-blue-600 underline underline-offset-2 hover:text-blue-800"
             >
               인쇄용 페이지 열기
@@ -171,7 +171,7 @@ export default function PdfDownloadCard({ item, variant = 'card' }: Props) {
           <Link
             href={item.printUrl}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             className="text-xs text-blue-600 underline underline-offset-2 hover:text-blue-800"
           >
             인쇄용 페이지 열기

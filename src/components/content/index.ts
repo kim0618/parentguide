@@ -17,3 +17,4 @@ export { default as PrepareListBox }       from './PrepareListBox';
 export { default as HubGuideCard }         from './HubGuideCard';
 export { default as FAQSection }           from './FAQSection';
 export { default as ArticleCard }          from './ArticleCard';
+export { default as ShareButtons }         from './ShareButtons';

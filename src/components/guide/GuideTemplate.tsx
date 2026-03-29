@@ -4,6 +4,8 @@ import { AdSlot } from '@/components/ads';
 import { Badge } from '@/components/ui';
 import ContentBody from './ContentBody';
 import ArticleCard from '@/components/content/ArticleCard';
+import TableOfContents from '@/components/content/TableOfContents';
+import MobileBottomBar from '@/components/content/MobileBottomBar';
 import {
   TargetUserBox,
   ReviewStatusBox,
@@ -13,6 +15,7 @@ import {
   CalculatorCTABox,
   PrintSummaryButton,
   FAQSection,
+  ShareButtons,
 } from '@/components/content';
 import { PdfDownloadCard } from '@/components/download';
 
@@ -63,6 +66,7 @@ export default function GuideTemplate({ item, relatedArticles, relatedDownloads 
   const templateLabel = TEMPLATE_LABEL[item.template];
   const hasCalculator = !!(item.relatedCalculator && item.calculatorCTA);
   const isCalculatorTemplate = item.template === 'calculator';
+  const firstPrintUrl = relatedDownloads?.find((d) => d.printUrl)?.printUrl;
 
   return (
     <>
@@ -117,7 +121,12 @@ export default function GuideTemplate({ item, relatedArticles, relatedDownloads 
         )}
 
         {/* ── 구분선 ───────────────────────────────────────────── */}
-        <hr className="mb-2" />
+        <hr className="mb-6" />
+
+        {/* ── 목차 ─────────────────────────────────────────────── */}
+        {item.sections && item.sections.length > 0 && (
+          <TableOfContents sections={item.sections} />
+        )}
 
         {/* ── 5. 본문 ──────────────────────────────────────────── */}
         {item.sections && item.sections.length > 0 && (
@@ -188,9 +197,12 @@ export default function GuideTemplate({ item, relatedArticles, relatedDownloads 
           <FAQSection items={item.faq} />
         )}
 
-        {/* ── 11. 인쇄 버튼 ────────────────────────────────────── */}
-        <div className="mt-10 flex justify-end border-t border-gray-200 pt-6">
-          <PrintSummaryButton />
+        {/* ── 11. 공유 + 인쇄 ────────────────────────────────── */}
+        <div className="mt-10 border-t border-gray-200 pt-8">
+          <ShareButtons title={item.title} />
+          <div className="mt-6 flex justify-end">
+            <PrintSummaryButton />
+          </div>
         </div>
 
       </article>
@@ -211,6 +223,9 @@ export default function GuideTemplate({ item, relatedArticles, relatedDownloads 
           </div>
         </section>
       )}
+
+      {/* ── 모바일 하단 고정 바 ────────────────────────────────── */}
+      <MobileBottomBar title={item.title} printUrl={firstPrintUrl} />
     </>
   );
 }

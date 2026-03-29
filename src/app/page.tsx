@@ -14,6 +14,7 @@ import ArticleCard from '@/components/content/ArticleCard';
 import HubGuideCard from '@/components/content/HubGuideCard';
 import { PdfDownloadCard } from '@/components/download';
 import { AdSlot } from '@/components/ads';
+import HeroIllustration from '@/components/ui/HeroIllustration';
 
 export const metadata: Metadata = {
   title: siteConfig.defaultOgTitle,
@@ -37,44 +38,51 @@ export default function HomePage() {
           ══════════════════════════════════════════════════════════ */}
       <section className="bg-blue-50 border-b border-blue-100">
         <div className="container-wide py-16 sm:py-20">
-          <div className="max-w-2xl">
+          <div className="flex items-center gap-8">
 
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-blue-700">
-              시니어·가족 복지 정보 가이드
-            </p>
+            <div className="max-w-2xl flex-1">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-blue-700">
+                부모님 복지·연금·건강 정보 가이드
+              </p>
 
-            <h1 className="text-4xl font-bold text-gray-900 leading-snug sm:text-5xl">
-              부모님 복지·건강·은퇴<br />정보를 한곳에
-            </h1>
+              <h1 className="text-4xl font-bold text-gray-900 leading-snug sm:text-5xl">
+                기초연금·요양등급·건강검진<br />신청부터 수령까지
+              </h1>
 
-            <p className="mt-5 text-xl text-gray-600 leading-relaxed">
-              {siteConfig.siteSubDescription}
-            </p>
+              <p className="mt-5 text-xl text-gray-600 leading-relaxed">
+                부모님이 받을 수 있는 복지 혜택, 건강검진, 연금 정보를 공식 출처 기반으로 쉽게 정리했습니다
+              </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#hubs" className="btn-primary no-underline">
-                상황별 가이드 보기
-              </a>
-              <Link
-                href="/guide/basic-pension-application/"
-                className="btn-outline no-underline"
-              >
-                기초연금 신청 방법
-              </Link>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#hubs" className="btn-primary no-underline">
+                  상황별 가이드 보기
+                </a>
+                <Link
+                  href="/guide/basic-pension-application/"
+                  className="btn-outline no-underline"
+                >
+                  기초연금 신청 방법
+                </Link>
+              </div>
+
+              {/* 신뢰 통계 */}
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+                {[
+                  { value: `${totalArticles}편`, label: '가이드' },
+                  { value: `${hubs.length}개`, label: '상황별 허브' },
+                  { value: '2025년', label: '최신 기준' },
+                ].map(({ value, label }) => (
+                  <span key={label} className="text-sm text-gray-600">
+                    <span className="font-bold text-blue-700">{value}</span>{' '}
+                    {label}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            {/* 신뢰 통계 */}
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
-              {[
-                { value: `${totalArticles}편`, label: '가이드' },
-                { value: `${hubs.length}개`, label: '상황별 허브' },
-                { value: '2025년', label: '최신 기준' },
-              ].map(({ value, label }) => (
-                <span key={label} className="text-sm text-gray-500">
-                  <span className="font-bold text-blue-700">{value}</span>{' '}
-                  {label}
-                </span>
-              ))}
+            {/* 히어로 일러스트 - 데스크탑만 표시 */}
+            <div className="hidden lg:block flex-shrink-0 w-[300px]">
+              <HeroIllustration className="w-full h-auto" />
             </div>
 
           </div>
@@ -154,7 +162,6 @@ export default function HomePage() {
                   key={cat.slug}
                   href={cat.href}
                   className="card-link block no-underline"
-                  aria-label={`${cat.label} 카테고리 - 글 ${cat.count}개`}
                 >
                   <span className={`mb-3 block h-1 w-8 rounded-full ${accentColor}`} aria-hidden="true" />
                   <p className="font-semibold text-gray-900">{cat.label}</p>
@@ -229,11 +236,11 @@ export default function HomePage() {
               >
                 {siteConfig.calculatorSiteName}
               </a>
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-gray-500">
                 {siteConfig.calculatorSiteAltName} · 무료
               </span>
             </div>
-            <p className="mt-4 mb-0 text-xs text-gray-400 leading-relaxed">
+            <p className="mt-4 mb-0 text-xs text-gray-500 leading-relaxed">
               시니어 특화 연금·의료 계산기는 추후 순차적으로 연결될 예정입니다.
             </p>
           </div>

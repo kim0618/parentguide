@@ -92,18 +92,48 @@ export function getFeaturedContent(limit?: number): ContentItem[] {
 /* ── 상세 페이지용 ────────────────────────────────────────────── */
 
 /**
- * 연관 글 반환 (relatedSlugs 기준)
+ * 연관 글 반환 (relatedSlugs + 같은 허브 + 같은 카테고리 순으로 보충)
  * 상세 페이지 하단 "관련 글" 섹션에 사용
  */
-export function getRelatedContent(slug: string): ContentListItem[] {
+export function getRelatedContent(slug: string, limit = 4): ContentListItem[] {
   const item = getContentBySlug(slug);
-  if (!item?.relatedSlugs?.length) return [];
+  if (!item) return [];
 
-  const relatedItems = item.relatedSlugs
-    .map((s) => getContentBySlug(s))
-    .filter((i): i is ContentItem => i !== undefined);
+  const seen = new Set<string>([slug]);
+  const result: ContentItem[] = [];
 
-  return getContentListItems(relatedItems);
+  // 1순위: 수동 지정된 relatedSlugs
+  if (item.relatedSlugs?.length) {
+    for (const s of item.relatedSlugs) {
+      if (seen.has(s)) continue;
+      const related = getContentBySlug(s);
+      if (related) { result.push(related); seen.add(s); }
+    }
+  }
+
+  // 2순위: 같은 허브에 속한 글
+  if (result.length < limit && item.hubKey?.length) {
+    const all = getAllContent();
+    for (const a of all) {
+      if (result.length >= limit) break;
+      if (seen.has(a.slug)) continue;
+      if (a.hubKey?.some((h) => item.hubKey?.includes(h))) {
+        result.push(a); seen.add(a.slug);
+      }
+    }
+  }
+
+  // 3순위: 같은 카테고리
+  if (result.length < limit) {
+    const siblings = getContentByCategory(item.category);
+    for (const a of siblings) {
+      if (result.length >= limit) break;
+      if (seen.has(a.slug)) continue;
+      result.push(a); seen.add(a.slug);
+    }
+  }
+
+  return getContentListItems(result.slice(0, limit));
 }
 
 /**

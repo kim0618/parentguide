@@ -32,7 +32,7 @@ export default function PolicyPageShell({
           <p className="mt-3 text-lg text-gray-600 leading-relaxed">{subtitle}</p>
         )}
         {updatedAt && (
-          <p className="mt-3 text-sm text-gray-400">최종 수정: {updatedAt}</p>
+          <p className="mt-3 text-sm text-gray-500">최종 수정: {updatedAt}</p>
         )}
       </header>
 

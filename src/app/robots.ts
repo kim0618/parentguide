@@ -10,6 +10,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: '/print/',
     },
     sitemap: `${base}/sitemap.xml`,
   };

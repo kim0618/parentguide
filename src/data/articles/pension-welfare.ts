@@ -14,6 +14,8 @@ export const pensionWelfareArticles: ContentItem[] = [
   {
     slug: 'basic-pension-application',
     title: '기초연금 신청 방법과 수령 조건 (2025년 기준)',
+    seoTitle: '기초연금 신청 방법 2025 - 자격 조건과 수령 금액',
+    seoDescription: '만 65세 이상 소득 하위 70%에 해당하면 기초연금을 받을 수 있습니다. 2025년 단독가구 최대 월 334,810원 수령 기준, 자격 조건, 주민센터·복지로 신청 방법을 정리했습니다.',
     category: 'pension-welfare',
     template: 'policy',
     targetUser: 'senior',
@@ -134,6 +136,8 @@ export const pensionWelfareArticles: ContentItem[] = [
   {
     slug: 'long-term-care-grade',
     title: '노인 장기요양보험 등급 신청 방법 완벽 가이드',
+    seoTitle: '장기요양보험 등급 신청 방법 2025 - 1~5등급 기준과 절차',
+    seoDescription: '부모님이 일상생활에 도움이 필요하다면 장기요양보험 등급 신청이 먼저입니다. 1~5등급 판정 기준, 신청 절차, 방문요양·주야간보호·요양원 등 이용 가능한 서비스를 안내합니다.',
     category: 'pension-welfare',
     template: 'policy',
     targetUser: 'family',
@@ -241,6 +245,8 @@ export const pensionWelfareArticles: ContentItem[] = [
   {
     slug: 'elderly-care-service',
     title: '노인맞춤돌봄서비스 신청 방법 및 지원 내용 (2025년)',
+    seoTitle: '노인맞춤돌봄서비스 신청 방법 2025 - 대상과 지원 내용',
+    seoDescription: '혼자 사시는 어르신이라면 노인맞춤돌봄서비스를 신청해보세요. 안전 확인·말벗·외출 동행 등을 무료로 받을 수 있으며 주민센터 또는 복지로에서 신청할 수 있습니다.',
     category: 'pension-welfare',
     template: 'policy',
     targetUser: 'both',
@@ -359,6 +365,8 @@ export const pensionWelfareArticles: ContentItem[] = [
   {
     slug: 'housing-benefit',
     title: '주거급여 신청 방법과 지원 금액 안내 (2025년)',
+    seoTitle: '주거급여 신청 방법 2025 - 대상·금액·신청 절차 총정리',
+    seoDescription: '기준 중위소득 48% 이하 가구라면 주거급여를 신청할 수 있습니다. 2025년 임차료 지원 금액, 자가 주택 수선비 기준, 주민센터 신청 방법을 한눈에 정리했습니다.',
     category: 'pension-welfare',
     template: 'policy',
     targetUser: 'both',

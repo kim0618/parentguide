@@ -14,6 +14,8 @@ export const healthCareArticles: ContentItem[] = [
   {
     slug: 'national-health-checkup-guide',
     title: '국가건강검진 대상·항목·결과 활용 완벽 가이드',
+    seoTitle: '국가건강검진 2025 - 대상 확인과 검진 항목 안내',
+    seoDescription: '건강보험 가입자라면 2년마다 국가건강검진을 무료로 받을 수 있습니다. 출생연도별 대상 확인 방법, 혈압·혈당 등 기본 검진 항목, 결과지 활용 방법을 안내합니다.',
     category: 'health-care',
     template: 'standard',
     targetUser: 'senior',
@@ -144,6 +146,8 @@ export const healthCareArticles: ContentItem[] = [
   {
     slug: 'dementia-care-center',
     title: '치매안심센터 무료 서비스 이용 방법 (2025년)',
+    seoTitle: '치매안심센터 이용 방법 2025 - 무료 검진과 가족 지원',
+    seoDescription: '전국 256개 치매안심센터에서 치매 조기 검진과 돌봄 가족 지원을 무료로 받을 수 있습니다. 방문 절차, 인지선별검사, 치매 등록 후 약제비 지원 혜택을 정리했습니다.',
     category: 'health-care',
     template: 'standard',
     targetUser: 'family',
@@ -253,6 +257,8 @@ export const healthCareArticles: ContentItem[] = [
   {
     slug: 'cancer-screening-guide',
     title: '국가암검진 무료 대상·항목·신청 방법 (2025년)',
+    seoTitle: '국가암검진 2025 - 6대 암 무료 대상과 신청 방법',
+    seoDescription: '국가에서 위암·대장암·간암·유방암·자궁경부암·폐암 6종 검진을 무료 또는 10% 본인부담으로 지원합니다. 연령별 검진 대상과 주기, 예약 방법을 안내합니다.',
     category: 'health-care',
     template: 'policy',
     targetUser: 'senior',

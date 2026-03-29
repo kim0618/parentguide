@@ -13,6 +13,8 @@ export const financeSafetyArticles: ContentItem[] = [
   {
     slug: 'prevent-voice-phishing',
     title: '보이스피싱·금융사기 예방 완전 가이드 (부모님 편)',
+    seoTitle: '보이스피싱 예방법 - 부모님 금융사기 유형과 즉각 대처',
+    seoDescription: '어르신을 노리는 보이스피싱과 금융사기가 갈수록 정교해지고 있습니다. 검찰·자녀 사칭 등 최신 수법 4가지와 피해 발생 즉시 해야 할 행동, 예방 조치를 정리했습니다.',
     category: 'finance-safety',
     template: 'checklist',
     targetUser: 'both',
@@ -121,6 +123,8 @@ export const financeSafetyArticles: ContentItem[] = [
   {
     slug: 'housing-pension',
     title: '주택연금 신청 방법과 수령액 계산 (2025년)',
+    seoTitle: '주택연금 신청 방법 2025 - 자격과 월 수령액 계산',
+    seoDescription: '집을 담보로 맡기고 매달 연금을 받으면서 계속 거주할 수 있는 주택연금. 2025년 자격 기준, 집값별 월 수령액 예시, 신청 절차와 해지 방법을 한눈에 정리했습니다.',
     category: 'finance-safety',
     template: 'policy',
     targetUser: 'both',
@@ -231,6 +235,8 @@ export const financeSafetyArticles: ContentItem[] = [
   {
     slug: 'retirement-finance-checklist',
     title: '노후 재정 점검 체크리스트 - 지금 당장 확인해야 할 5가지',
+    seoTitle: '노후 재정 점검 체크리스트 - 은퇴 준비 5가지 핵심 항목',
+    seoDescription: '노후 재정이 충분한지 연금·저축·보험·부채·비상금 5가지로 점검해보세요. 국민연금 예상 수령액 조회 방법과 부족한 항목을 보완하는 방법도 함께 안내합니다.',
     category: 'finance-safety',
     template: 'checklist',
     targetUser: 'both',

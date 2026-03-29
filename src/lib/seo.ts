@@ -49,7 +49,7 @@ export function buildGuideMetadata(item: ContentItem): Metadata {
       section:       CATEGORY_LABELS[item.category],
     },
     twitter: {
-      card:        'summary',
+      card:        'summary_large_image',
       title,
       description,
     },

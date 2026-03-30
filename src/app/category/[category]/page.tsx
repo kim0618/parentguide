@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { getCategoryBySlug, categories } from '@/data/categories';
 import { getCategoryListItems } from '@/lib/content';
 import { buildCategoryMetadata } from '@/lib/seo';
-import ArticleCard from '@/components/content/ArticleCard';
+import CategoryArticleList from '@/components/content/CategoryArticleList';
 import { Breadcrumb } from '@/components/ui';
 
 export function generateStaticParams() {
@@ -59,11 +59,7 @@ export default async function CategoryPage({ params }: Props) {
             <h2 id="articles-heading" className="sr-only">
               {cat.label} 관련 글 목록
             </h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {articles.map((article) => (
-                <ArticleCard key={article.slug} item={article} />
-              ))}
-            </div>
+            <CategoryArticleList items={articles} />
           </section>
         ) : (
           <p className="text-gray-500">관련 글을 준비 중입니다.</p>

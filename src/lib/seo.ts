@@ -47,11 +47,13 @@ export function buildGuideMetadata(item: ContentItem): Metadata {
       publishedTime: `${item.createdAt}T00:00:00+09:00`,
       modifiedTime:  `${item.updatedAt}T00:00:00+09:00`,
       section:       CATEGORY_LABELS[item.category],
+      images: [{ url: '/og-default.png', width: 1200, height: 630 }],
     },
     twitter: {
       card:        'summary_large_image',
       title,
       description,
+      images:      ['/og-default.png'],
     },
   };
 }
@@ -80,11 +82,13 @@ export function buildHubMetadata(hub: Hub): Metadata {
       url:      path,
       locale:   'ko_KR',
       siteName: siteConfig.siteName,
+      images: [{ url: '/og-default.png', width: 1200, height: 630 }],
     },
     twitter: {
-      card:        'summary',
+      card:        'summary_large_image',
       title,
       description,
+      images:      ['/og-default.png'],
     },
   };
 }
@@ -116,11 +120,13 @@ export function buildCategoryMetadata(
       url:      path,
       locale:   'ko_KR',
       siteName: siteConfig.siteName,
+      images: [{ url: '/og-default.png', width: 1200, height: 630 }],
     },
     twitter: {
-      card:        'summary',
+      card:        'summary_large_image',
       title,
       description,
+      images:      ['/og-default.png'],
     },
   };
 }
@@ -159,6 +165,13 @@ export function buildPolicyMetadata(
       url:      path,
       locale:   'ko_KR',
       siteName: siteConfig.siteName,
+      images: [{ url: '/og-default.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card:        'summary_large_image',
+      title,
+      description,
+      images:      ['/og-default.png'],
     },
   };
 }

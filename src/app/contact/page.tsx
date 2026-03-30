@@ -31,15 +31,12 @@ export default function ContactPage() {
 
       <h2>연락 방법</h2>
       <p>
-        현재 부모혜택은 운영 준비 중입니다. 정식 운영 후에는 아래 이메일로
-        문의를 받을 예정입니다.
+        아래 이메일로 문의를 보내주시면 확인 후 조치하겠습니다.
       </p>
-      {/* TODO: 도메인 확정 후 실제 이메일 활성화 */}
       <div className="box-info">
         <p className="box-title">이메일 문의</p>
         <p className="mt-1 mb-0">
-          정식 운영 후 이메일 문의가 가능해집니다.
-          사이트 출시와 함께 연락처가 공개될 예정입니다.
+          <a href="mailto:parentguide@naver.com">parentguide@naver.com</a>
         </p>
       </div>
 

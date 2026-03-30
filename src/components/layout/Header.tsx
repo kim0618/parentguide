@@ -6,9 +6,11 @@ import { categories } from '@/data/categories';
 import Logo from './Logo';
 import { hubs } from '@/data/hubs';
 import FontSizeControl from '@/components/ui/FontSizeControl';
+import SearchModal from '@/components/search/SearchModal';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-gray-200 bg-white">
@@ -58,7 +60,31 @@ export default function Header() {
             />
 
             <FontSizeControl />
+
+            {/* 검색 버튼 */}
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="ml-1 inline-flex min-h-[36px] min-w-[36px] items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+              aria-label="검색"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0Z" />
+              </svg>
+            </button>
           </nav>
+
+          {/* ── 모바일 검색 버튼 ────────────────────────── */}
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-gray-700 hover:bg-gray-100 md:hidden"
+            aria-label="검색"
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0Z" />
+            </svg>
+          </button>
 
           {/* ── 모바일 햄버거 버튼 ───────────────────────── */}
           <button
@@ -105,6 +131,9 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      {/* ── 검색 모달 ────────────────────────────────────── */}
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* ── 모바일 메뉴 ──────────────────────────────────── */}
       {menuOpen && (
@@ -168,6 +197,7 @@ export default function Header() {
                 {[
                   { label: '소개', href: '/about' },
                   { label: '면책 고지', href: '/disclaimer' },
+                  { label: '개인정보처리방침', href: '/privacy-policy' },
                   { label: '문의', href: '/contact' },
                 ].map((link) => (
                   <li key={link.href}>

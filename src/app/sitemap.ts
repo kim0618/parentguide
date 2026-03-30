@@ -8,7 +8,7 @@ export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
-  const now = new Date().toISOString();
+  const now = new Date().toISOString().split('T')[0];
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${base}/`,                    lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/update-policy/`,      lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
     { url: `${base}/disclaimer/`,         lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
     { url: `${base}/contact/`,            lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
+    { url: `${base}/privacy-policy/`,    lastModified: now, changeFrequency: 'yearly',  priority: 0.3 },
   ];
 
   const categoryRoutes: MetadataRoute.Sitemap = categories.map((c) => ({

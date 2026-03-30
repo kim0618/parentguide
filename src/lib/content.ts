@@ -25,11 +25,13 @@ export function getAllContent(): ContentItem[] {
 
 /* ── 기본 필터/정렬 ───────────────────────────────────────────── */
 
-/** 최신순 정렬 (createdAt 기준) */
+/** 최신순 정렬 (updatedAt 기준, 동일 시 createdAt 기준) */
 export function sortByDate(items: ContentItem[]): ContentItem[] {
-  return [...items].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-  );
+  return [...items].sort((a, b) => {
+    const diff = new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+    if (diff !== 0) return diff;
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
 }
 
 /** 카테고리별 콘텐츠 반환 (최신순) */

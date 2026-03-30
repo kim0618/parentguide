@@ -10,6 +10,7 @@ const INFO_LINKS = [
   { label: '출처 기준', href: '/source-policy' },
   { label: '업데이트 정책', href: '/update-policy' },
   { label: '면책 고지', href: '/disclaimer' },
+  { label: '개인정보처리방침', href: '/privacy-policy' },
   { label: '문의', href: '/contact' },
 ] as const;
 

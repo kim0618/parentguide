@@ -9,6 +9,8 @@ interface Props {
   item: ContentListItem;
   /** 카드 내 배지 표시 여부 (기본 true) */
   showBadge?: boolean;
+  /** 최근 30일 이내 게시된 글 여부 (NEW 배지 표시) */
+  isNew?: boolean;
   /**
    * 허브 페이지에서 렌더링 중일 때 전달.
    * 있으면 hub_article_click 이벤트 발송.
@@ -37,7 +39,7 @@ const TARGET_LABELS: Record<string, string> = {
  * - 시니어 친화: 충분한 패딩, 큰 텍스트, 명확한 구분선
  * - sourceHub 전달 시 hub_article_click 이벤트 발송
  */
-export default function ArticleCard({ item, showBadge = true, sourceHub }: Props) {
+export default function ArticleCard({ item, showBadge = true, isNew = false, sourceHub }: Props) {
   function handleClick() {
     if (!sourceHub) return;
     trackEvent('hub_article_click', {
@@ -56,14 +58,19 @@ export default function ArticleCard({ item, showBadge = true, sourceHub }: Props
         onClick={handleClick}
       >
         {/* 배지 영역 */}
-        {showBadge && (
+        {(showBadge || isNew) && (
           <div className="mb-2 flex flex-wrap gap-2">
-            {item.category && (
+            {isNew && (
+              <Badge variant="green" className="text-xs">
+                NEW
+              </Badge>
+            )}
+            {showBadge && item.category && (
               <Badge variant="blue" className="text-xs">
                 {CATEGORY_LABELS[item.category] ?? item.category}
               </Badge>
             )}
-            {item.targetUser && (
+            {showBadge && item.targetUser && (
               <Badge variant="gray" className="text-xs">
                 {TARGET_LABELS[item.targetUser] ?? item.targetUser}
               </Badge>

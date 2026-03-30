@@ -3,6 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 import { siteConfig, getSiteUrl } from '@/config/siteConfig';
 import { LayoutShell } from '@/components/layout';
+import CookieConsent from '@/components/CookieConsent';
 import JsonLd from '@/components/seo/JsonLd';
 import { buildOrganizationJsonLd, buildWebSiteJsonLd } from '@/lib/jsonld';
 
@@ -84,6 +85,7 @@ export default function RootLayout({
         </a>
 
         <LayoutShell>{children}</LayoutShell>
+        <CookieConsent />
 
         {/* ── AdSense 스크립트 ──────────────────────────────────
             NEXT_PUBLIC_ADSENSE_CLIENT 미설정 시 로드 안 함.

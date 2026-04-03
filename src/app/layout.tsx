@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         url: '/og-default.png',
         width: 1200,
         height: 630,
-        alt: '부모혜택 - 부모님 복지·건강·은퇴 정보를 한곳에',
+        alt: '부모혜택 | 부모님 복지·건강·은퇴 정보를 한곳에',
       },
     ],
   },

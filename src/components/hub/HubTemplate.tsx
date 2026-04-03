@@ -48,7 +48,7 @@ export default function HubTemplate({ hub, detail, articles, relatedDownloads }:
             className="mb-4"
             items={[{ label: '홈', href: '/' }, { label: hub.title }]}
           />
-          <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-700">
+          <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-blue-700">
             상황별 가이드
           </p>
           <h1 className="mb-4">{hub.title}</h1>
@@ -93,7 +93,7 @@ export default function HubTemplate({ hub, detail, articles, relatedDownloads }:
             {featuredArticles.map((article) => (
               <div
                 key={article.slug}
-                className="rounded-xl border-2 border-blue-200 bg-blue-50"
+                className="rounded-xl ring-2 ring-blue-200 bg-blue-50"
               >
                 <ArticleCard
                   item={article}

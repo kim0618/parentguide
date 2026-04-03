@@ -26,7 +26,7 @@ export default function KeyPointsBox({ points, title = '이 글의 핵심 요약
             {/* 번호 뱃지 */}
             <span
               className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full
-                         bg-gray-300 text-xs font-bold text-gray-700"
+                         bg-blue-700 text-xs font-bold text-white"
               aria-hidden="true"
             >
               {i + 1}

@@ -65,7 +65,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              className="ml-1 inline-flex min-h-[36px] min-w-[36px] items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+              className="ml-1 inline-flex min-h-[40px] min-w-[40px] items-center justify-center rounded-md text-gray-600 hover:bg-gray-100 hover:text-gray-900"
               aria-label="검색"
             >
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">

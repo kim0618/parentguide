@@ -48,7 +48,7 @@ export const siteConfig = {
    * 기본 OG 제목 (<title>과 별도로 관리)
    * 개별 페이지에서 override하지 않으면 이 값이 사용됨
    */
-  defaultOgTitle: '부모혜택 - 부모님·시니어 복지·건강보험·은퇴 실무 가이드',
+  defaultOgTitle: '부모혜택 | 부모님·시니어 복지·건강보험·은퇴 실무 가이드',
 
   /**
    * 기본 OG 설명 (siteDescription과 동일하게 유지해도 무방하나

@@ -55,12 +55,13 @@ function SectionBlock({
   const { type, heading, body, items } = section;
   const isChecklist = template === 'checklist';
   const headingId = heading ? `section-${index}` : undefined;
+  const headingClass = index === 0 ? 'mt-4 mb-3 scroll-mt-20' : 'mt-8 mb-3 scroll-mt-20';
 
   /* ── text ───────────────────────────────────────────────────── */
   if (type === 'text') {
     return (
       <div>
-        {heading && <h2 id={headingId} className="mt-8 mb-3 scroll-mt-20">{heading}</h2>}
+        {heading && <h2 id={headingId} className={headingClass}>{heading}</h2>}
         {body && <BodyText text={body} />}
       </div>
     );
@@ -70,7 +71,7 @@ function SectionBlock({
   if (type === 'list') {
     return (
       <div>
-        {heading && <h2 id={headingId} className="mt-8 mb-3 scroll-mt-20">{heading}</h2>}
+        {heading && <h2 id={headingId} className={headingClass}>{heading}</h2>}
         {items && (
           <ul className="list-none pl-0 space-y-2 mb-5">
             {items.map((item, j) => (
@@ -92,7 +93,7 @@ function SectionBlock({
   if (type === 'numbered-list') {
     return (
       <div>
-        {heading && <h2 id={headingId} className="mt-8 mb-3 scroll-mt-20">{heading}</h2>}
+        {heading && <h2 id={headingId} className={headingClass}>{heading}</h2>}
         {items && (
           <ol className={`list-none pl-0 mb-5 ${isChecklist ? 'space-y-4' : 'space-y-3'}`}>
             {items.map((item, j) => (

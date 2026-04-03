@@ -42,7 +42,7 @@ export default function Footer() {
                 <li key={cat.slug}>
                   <Link
                     href={cat.href}
-                    className="text-sm text-gray-600 no-underline hover:text-blue-700"
+                    className="text-sm text-gray-700 no-underline hover:text-blue-700"
                   >
                     {cat.label}
                   </Link>
@@ -61,7 +61,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-gray-600 no-underline hover:text-blue-700"
+                    className="text-sm text-gray-700 no-underline hover:text-blue-700"
                   >
                     {link.label}
                   </Link>

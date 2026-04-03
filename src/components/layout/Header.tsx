@@ -74,27 +74,27 @@ export default function Header() {
             </button>
           </nav>
 
-          {/* ── 모바일 검색 버튼 ────────────────────────── */}
-          <button
-            type="button"
-            onClick={() => setSearchOpen(true)}
-            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-gray-700 hover:bg-gray-100 md:hidden"
-            aria-label="검색"
-          >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0Z" />
-            </svg>
-          </button>
+          {/* ── 모바일 우측 버튼 그룹 ───────────────────── */}
+          <div className="flex items-center md:hidden">
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-gray-700 hover:bg-gray-100"
+              aria-label="검색"
+            >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0Z" />
+              </svg>
+            </button>
 
-          {/* ── 모바일 햄버거 버튼 ───────────────────────── */}
-          <button
-            type="button"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-gray-700 hover:bg-gray-100 md:hidden"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
-          >
+            <button
+              type="button"
+              onClick={() => setMenuOpen((prev) => !prev)}
+              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-gray-700 hover:bg-gray-100"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            >
             {menuOpen ? (
               /* X 아이콘 */
               <svg
@@ -128,7 +128,8 @@ export default function Header() {
                 />
               </svg>
             )}
-          </button>
+            </button>
+          </div>
         </div>
       </div>
 

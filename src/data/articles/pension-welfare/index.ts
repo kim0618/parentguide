@@ -33,6 +33,7 @@ import seniorDaycareCenter from './senior-daycare-center';
 import emergencyCareService from './emergency-care-service';
 import veteransSeniorBenefit from './veterans-senior-benefit';
 import seniorDigitalEducation from './senior-digital-education';
+import seniorTravelSupport from './senior-travel-support';
 
 export const pensionWelfareArticles: ContentItem[] = [
   basicPensionApplication,
@@ -68,4 +69,5 @@ export const pensionWelfareArticles: ContentItem[] = [
   emergencyCareService,
   veteransSeniorBenefit,
   seniorDigitalEducation,
+  seniorTravelSupport,
 ];

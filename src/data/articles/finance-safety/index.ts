@@ -33,6 +33,7 @@ import digitalFinanceSafety from './digital-finance-safety';
 import seniorDepositProtection from './senior-deposit-protection';
 import powerOfAttorney from './power-of-attorney';
 import seniorSubscriptionCleanup from './senior-subscription-cleanup';
+import nationalPensionAdditional from './national-pension-additional';
 
 export const financeSafetyArticles: ContentItem[] = [
   preventVoicePhishing,
@@ -68,4 +69,6 @@ export const financeSafetyArticles: ContentItem[] = [
   seniorDepositProtection,
   powerOfAttorney,
   seniorSubscriptionCleanup,
+  nationalPensionAdditional,
 ];
+

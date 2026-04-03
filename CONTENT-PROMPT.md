@@ -11,7 +11,7 @@
 
 ■ 요청 글 주제: [주제를 자유롭게 적거나 "알아서 선정"]
 ■ 카테고리: [pension-welfare / health-care / finance-safety / 부족한 카테고리부터]
-■ 글 수: [몇 편]
+■ 글 수: 3편
 
 아래 규칙을 반드시 지켜.
 
@@ -99,7 +99,8 @@ TypeScript 타입: ContentItem (src/types/content.ts)
   isFeatured     — 주목 글 여부 (신규 글은 보통 false)
   effectiveDate  — 정책 기준일 (policy 템플릿에서 사용)
 
-  ※ relatedCalculator, calculatorCTA는 비워둘 것 (향후 연결)
+  relatedCalculator — 연관 제이퍼 계산기 URL (아래 8번 규칙 참조)
+  calculatorCTA     — 계산기 버튼 문구 (예: "기초연금 수급액 계산해보기")
 
 ────────────────────────────────
 5. sections 작성 규칙
@@ -168,7 +169,9 @@ TypeScript 타입: ContentItem (src/types/content.ts)
 - 각 글에 faq 2~3개 필수 (실제로 많이 묻는 질문)
 - summary는 반드시 80~150자 범위 (한글 기준, 작성 후 글자 수 확인)
 - sections는 5~8개 (절대 9개 이상 작성하지 말 것)
-- 위키링크 [[slug|텍스트]] 글당 최소 1개 이상 (기존 글과 연결)
+- 위키링크 [[slug|텍스트]] 글당 최소 2개 이상 (relatedSlugs에 있는 것 우선 활용)
+- 금액·기간 시뮬레이션 예시 필수: 신청/절차/수령 관련 글은 구체적 계산 예시 포함 (예: "250만원 기준 추납 24개월 시 보험료 540만원, 월 수령액 8만원 증가")
+- title은 반드시 30자 이상 확인 후 제출 (작성 후 글자 수 재확인)
 
 ────────────────────────────────
 7. 작성 후 확인사항 (A등급 체크리스트)
@@ -197,6 +200,27 @@ TypeScript 타입: ContentItem (src/types/content.ts)
   - cautionNote가 있는가
   - keyPoints가 2~3개 있는가
   - tags가 4~6개 있는가
+  - 제이퍼 계산기 연결 가능 여부 확인 (8번 참조)
+
+────────────────────────────────
+8. 제이퍼 계산기 연결 규칙
+────────────────────────────────
+아래 계산기와 주제가 연관되면 relatedCalculator + calculatorCTA 반드시 입력.
+
+연결 가능한 계산기 목록 (jptcalc.kr):
+  기초연금       → https://jptcalc.kr/basic-pension
+  국민연금       → https://jptcalc.kr/national-pension
+  건강보험료     → https://jptcalc.kr/health-insurance
+  장기요양보험   → https://jptcalc.kr/long-term-care
+  퇴직금         → https://jptcalc.kr/severance-pay
+  상속세         → https://jptcalc.kr/inheritance-tax
+  증여세         → https://jptcalc.kr/gift-tax
+  실업급여       → https://jptcalc.kr/unemployment-benefit
+
+연결 조건:
+- 글 주제가 위 계산기와 직접 관련된 경우에만 연결
+- calculatorCTA는 "직접 계산해보기" 또는 구체적 문구 (예: "기초연금 수급액 계산해보기")
+- 연결이 어색한 글(건강관리, 일반 생활정보 등)은 비워둘 것
 ```
 
 ---

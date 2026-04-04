@@ -142,69 +142,60 @@ export default function Header() {
           id="mobile-menu"
           className="border-t border-gray-200 bg-white md:hidden"
         >
-          <div className="container-site space-y-6 py-5">
+          <nav className="container-site py-2" aria-label="모바일 메뉴">
 
             {/* 카테고리 */}
-            <section>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            <div className="py-2">
+              <span className="block px-2 pb-1 text-[11px] font-semibold uppercase tracking-widest text-gray-400">
                 카테고리
-              </p>
-              <ul className="space-y-0.5">
-                {categories.map((cat) => (
-                  <li key={cat.slug}>
-                    <Link
-                      href={cat.href}
-                      className="block rounded-md px-3 py-3 font-medium text-gray-800 no-underline hover:bg-gray-100"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {cat.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
+              </span>
+              {categories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={cat.href}
+                  className="block rounded-md px-2 py-2 text-base font-medium leading-snug !text-gray-900 no-underline hover:bg-gray-50"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {cat.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="border-t border-gray-100 mx-2" />
 
             {/* 상황별 가이드 */}
-            <section>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            <div className="py-2">
+              <span className="block px-2 pb-1 text-[11px] font-semibold uppercase tracking-widest text-gray-400">
                 상황별 가이드
-              </p>
-              <ul className="space-y-0.5">
-                {hubs.map((hub) => (
-                  <li key={hub.slug}>
-                    <Link
-                      href={hub.href}
-                      className="block rounded-md px-3 py-3 text-gray-700 no-underline hover:bg-gray-100"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {hub.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
+              </span>
+              {hubs.map((hub) => (
+                <Link
+                  key={hub.slug}
+                  href={hub.href}
+                  className="block rounded-md px-2 py-2 text-base leading-snug !text-gray-700 no-underline hover:bg-gray-50"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {hub.title}
+                </Link>
+              ))}
+            </div>
 
-            {/* 글자 크기 조절 */}
-            <section className="border-t border-gray-100 pt-4">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
-                글자 크기
-              </p>
+            <div className="border-t border-gray-100 mx-2" />
+
+            {/* 글자 크기 + 안내 링크 */}
+            <div className="flex items-center justify-between gap-4 px-2 py-3">
               <FontSizeControl />
-            </section>
-
-            {/* 사이트 안내 */}
-            <section className="border-t border-gray-100 pt-4">
-              <ul className="flex flex-wrap gap-x-4 gap-y-1">
+              <ul className="list-none flex flex-wrap justify-end gap-x-4 gap-y-1 p-0 m-0">
                 {[
                   { label: '소개', href: '/about' },
                   { label: '면책 고지', href: '/disclaimer' },
-                  { label: '개인정보처리방침', href: '/privacy-policy' },
+                  { label: '개인정보', href: '/privacy-policy' },
                   { label: '문의', href: '/contact' },
                 ].map((link) => (
-                  <li key={link.href}>
+                  <li key={link.href} className="m-0">
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-500 no-underline hover:text-gray-800"
+                      className="text-xs !text-gray-400 no-underline hover:!text-gray-600"
                       onClick={() => setMenuOpen(false)}
                     >
                       {link.label}
@@ -212,9 +203,9 @@ export default function Header() {
                   </li>
                 ))}
               </ul>
-            </section>
+            </div>
 
-          </div>
+          </nav>
         </div>
       )}
     </header>

@@ -35,6 +35,7 @@ import seniorPhysicalTherapy from './senior-physical-therapy';
 import seniorCataractSurgery from './senior-cataract-surgery';
 import seniorAssistiveDevice from './senior-assistive-device';
 import seniorStrokePrevention from './senior-stroke-prevention';
+import seniorOsteoporosis from './senior-osteoporosis';
 
 export const healthCareArticles: ContentItem[] = [
   nationalHealthCheckupGuide,
@@ -72,4 +73,5 @@ export const healthCareArticles: ContentItem[] = [
   seniorCataractSurgery,
   seniorAssistiveDevice,
   seniorStrokePrevention,
+  seniorOsteoporosis,
 ];

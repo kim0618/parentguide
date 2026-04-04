@@ -16,36 +16,38 @@ interface Props {
  */
 export default function PrintPageShell({ title, subtitle, children }: Props) {
   return (
-    <div className="py-8 px-4 print:p-0">
+    <div className="py-6 px-4 print:p-0">
 
       {/* 인쇄 버튼 - 인쇄 시 숨김 */}
-      <div className="print:hidden mb-6 flex items-center justify-between max-w-[210mm] mx-auto">
-        <p className="text-sm text-gray-500">
-          아래 버튼을 눌러 PDF로 저장하거나 인쇄하세요
-        </p>
-        <div className="flex gap-2">
-          <button
-            onClick={() => window.print()}
-            className="btn-primary text-sm"
-          >
-            인쇄 / PDF 저장
-          </button>
-          <button
-            onClick={() => window.close()}
-            className="btn-outline text-sm"
-          >
-            탭 닫기
-          </button>
+      <div className="print:hidden mb-5 mx-auto max-w-[210mm]">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-gray-500">
+            아래 버튼을 눌러 PDF로 저장하거나 인쇄하세요
+          </p>
+          <div className="flex gap-2">
+            <button
+              onClick={() => window.print()}
+              className="btn-primary btn-sm text-sm"
+            >
+              인쇄 / PDF 저장
+            </button>
+            <button
+              onClick={() => window.close()}
+              className="btn-outline btn-sm text-sm"
+            >
+              탭 닫기
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* A4 페이지 */}
+      {/* A4 페이지 - 화면: 반응형 / 인쇄: 210mm 고정 */}
       <div
-        className="mx-auto bg-white shadow-lg print:shadow-none"
+        className="mx-auto w-full bg-white shadow-lg print:shadow-none"
         style={{
-          width: '210mm',
-          minHeight: '297mm',
-          padding: '18mm 20mm',
+          maxWidth: '210mm',
+          minHeight: 'auto',
+          padding: 'clamp(16px, 5vw, 18mm) clamp(16px, 5vw, 20mm)',
         }}
       >
         {/* 헤더 */}

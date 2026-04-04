@@ -15,6 +15,7 @@ import { buildOrganizationJsonLd, buildWebSiteJsonLd } from '@/lib/jsonld';
 
    슬롯 ID는 src/components/ads/AdSlot.tsx 의 AD_SLOT_MAP에 입력.
    ─────────────────────────────────────────────────────────── */
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 
 export const metadata: Metadata = {
@@ -24,6 +25,15 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.siteName}`,
   },
   description: siteConfig.siteDescription,
+  icons: {
+    icon: [
+      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png',   sizes: '192x192', type: 'image/png' },
+    ],
+    apple: { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    shortcut: '/favicon-32.png',
+  },
   openGraph: {
     type:        'website',
     siteName:    siteConfig.siteName,
@@ -76,7 +86,6 @@ export default function RootLayout({
         />
         <link rel="alternate" type="application/rss+xml" title="부모혜택 RSS" href="/feed.xml" />
         <meta name="theme-color" content="#1D4ED8" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
         <JsonLd schemas={[buildOrganizationJsonLd(), buildWebSiteJsonLd()]} />
       </head>
       <body className="flex min-h-screen flex-col">
@@ -91,6 +100,27 @@ export default function RootLayout({
 
         <LayoutShell>{children}</LayoutShell>
         <CookieConsent />
+
+        {/* ── GA4 스크립트 ─────────────────────────────────────
+            NEXT_PUBLIC_GA_MEASUREMENT_ID 미설정 시 로드 안 함.
+            strategy="afterInteractive": 페이지 인터랙티브 이후 로드
+            ─────────────────────────────────────────────────── */}
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
 
         {/* ── AdSense 스크립트 ──────────────────────────────────
             NEXT_PUBLIC_ADSENSE_CLIENT 미설정 시 로드 안 함.

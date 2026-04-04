@@ -21,25 +21,25 @@ export default function Footer() {
     <footer className="border-t border-gray-200 bg-gray-50">
       <div className="container-site py-10 md:py-12">
 
-        {/* ── 3단 그리드 ────────────────────────────────── */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* ── 브랜드 설명 ──────────────────────────────── */}
+        <div className="mb-6">
+          <Logo />
+          <p className="mt-2 text-sm leading-relaxed text-gray-600">
+            {siteConfig.siteSubDescription}
+          </p>
+        </div>
 
-          {/* 브랜드 설명 */}
-          <div>
-            <Logo />
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
-              {siteConfig.siteSubDescription}
-            </p>
-          </div>
+        {/* ── 2단 그리드 (모바일 포함) ─────────────────── */}
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
 
           {/* 카테고리 */}
           <div>
             <h2 className="mb-3 text-sm font-semibold text-gray-800">
               카테고리
             </h2>
-            <ul className="space-y-2">
+            <ul className="list-none space-y-2 p-0 m-0">
               {categories.map((cat) => (
-                <li key={cat.slug}>
+                <li key={cat.slug} className="m-0">
                   <Link
                     href={cat.href}
                     className="text-sm text-gray-700 no-underline hover:text-blue-700"
@@ -56,9 +56,9 @@ export default function Footer() {
             <h2 className="mb-3 text-sm font-semibold text-gray-800">
               안내
             </h2>
-            <ul className="space-y-2">
+            <ul className="list-none space-y-2 p-0 m-0">
               {INFO_LINKS.map((link) => (
-                <li key={link.href}>
+                <li key={link.href} className="m-0">
                   <Link
                     href={link.href}
                     className="text-sm text-gray-700 no-underline hover:text-blue-700"

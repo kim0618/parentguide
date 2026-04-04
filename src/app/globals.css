@@ -191,17 +191,26 @@
 
   /* 주요 행동 버튼 */
   .btn-primary {
-    @apply bg-blue-700 text-white hover:bg-blue-900;
+    @apply bg-blue-700 text-white active:text-white visited:text-white;
+  }
+  @media (hover: hover) {
+    .btn-primary:hover { @apply bg-blue-900 text-white; }
   }
 
   /* 보조 버튼 */
   .btn-outline {
-    @apply border-2 border-blue-700 text-blue-700 bg-white hover:bg-blue-50;
+    @apply border-2 border-blue-700 text-blue-700 bg-white active:text-blue-700;
+  }
+  @media (hover: hover) {
+    .btn-outline:hover { @apply bg-blue-50 text-blue-700; }
   }
 
   /* 텍스트형 버튼 */
   .btn-ghost {
-    @apply text-gray-700 hover:bg-gray-100;
+    @apply text-gray-700;
+  }
+  @media (hover: hover) {
+    .btn-ghost:hover { @apply bg-gray-100 text-gray-700; }
   }
 
   /* 작은 버튼 (최소 터치 영역은 유지) */
@@ -317,6 +326,12 @@
   .container-site {
     max-width: 100% !important;
     padding: 0 !important;
+  }
+
+  /* 인쇄 시 A4 고정 크기 */
+  @page {
+    size: A4;
+    margin: 0;
   }
 
   body {

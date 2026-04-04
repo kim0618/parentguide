@@ -64,7 +64,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 pt-16 px-4"
+      className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 pt-3 px-3 sm:pt-16 sm:px-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -109,7 +109,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
 
         {/* 결과 목록 */}
         {results.length > 0 && (
-          <ul className="max-h-96 overflow-y-auto divide-y divide-gray-100">
+          <ul className="max-h-[55vh] sm:max-h-96 overflow-y-auto divide-y divide-gray-100">
             {results.map((item) => (
               <li key={item.slug}>
                 <Link

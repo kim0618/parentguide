@@ -19,6 +19,7 @@ import HeroIllustration from '@/components/ui/HeroIllustration';
 export const metadata: Metadata = {
   title: siteConfig.defaultOgTitle,
   description: siteConfig.siteDescription,
+  alternates: { canonical: '/' },
 };
 
 export default function HomePage() {

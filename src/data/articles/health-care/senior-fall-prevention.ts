@@ -120,7 +120,7 @@ const article: ContentItem = {
   cautionNote:
     '이 글은 일반적인 낙상 예방 가이드입니다. 낙상 고위험군이거나 이미 낙상을 경험한 경우 반드시 담당 의사나 물리치료사와 상담해 개인별 맞춤 예방 계획을 수립하세요.',
 
-  relatedSlugs: ['elderly-care-service', 'home-visiting-care', 'care-type-selection'],
+  relatedSlugs: ['elderly-care-service', 'home-visiting-care', 'care-type-selection', 'senior-chronic-pain'],
 };
 
 export default article;

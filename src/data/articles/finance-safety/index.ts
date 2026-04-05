@@ -35,6 +35,7 @@ import powerOfAttorney from './power-of-attorney';
 import seniorSubscriptionCleanup from './senior-subscription-cleanup';
 import nationalPensionAdditional from './national-pension-additional';
 import retirementSeveranceChoice from './retirement-severance-choice';
+import retirementHealthInsurance from './retirement-health-insurance';
 
 export const financeSafetyArticles: ContentItem[] = [
   preventVoicePhishing,
@@ -72,5 +73,6 @@ export const financeSafetyArticles: ContentItem[] = [
   seniorSubscriptionCleanup,
   nationalPensionAdditional,
   retirementSeveranceChoice,
+  retirementHealthInsurance,
 ];
 

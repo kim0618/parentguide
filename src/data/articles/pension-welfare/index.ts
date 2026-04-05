@@ -35,6 +35,7 @@ import veteransSeniorBenefit from './veterans-senior-benefit';
 import seniorDigitalEducation from './senior-digital-education';
 import seniorTravelSupport from './senior-travel-support';
 import nationalPensionCredit from './national-pension-credit';
+import seniorSocialServiceVoucher from './senior-social-service-voucher';
 
 export const pensionWelfareArticles: ContentItem[] = [
   basicPensionApplication,
@@ -72,4 +73,5 @@ export const pensionWelfareArticles: ContentItem[] = [
   seniorDigitalEducation,
   seniorTravelSupport,
   nationalPensionCredit,
+  seniorSocialServiceVoucher,
 ];
